@@ -8,7 +8,7 @@ RUN apt-add-repository -y ppa:marutter/rrutter
 RUN apt-get -y update && apt-get -y upgrade
 
 # Install basic commands
-RUN apt-get -y install links nano
+RUN apt-get -y install links nano htop
 
 # Necessary for getting the latest R version
 RUN apt-get -y install r-base r-base-dev
@@ -27,7 +27,7 @@ RUN apt-get -y install libxml2-dev
 RUN R CMD javareconf
 
 # Install common R packages
-RUN R -e "install.packages(c('devtools', 'gplots', 'httr', 'igraph', 'knitr', 'methods', 'plyr', 'RColorBrewer', 'rJava', 'rjson', 'R.methodsS3', 'R.oo', 'sqldf', 'stringr', 'testthat', 'XML', 'DT', 'htmlwidgets'), repos='http://cran.rstudio.com/')"
+RUN R -e "install.packages(c('devtools', 'gplots', 'httr', 'igraph', 'knitr', 'methods', 'plyr', 'RColorBrewer', 'rJava', 'rjson', 'R.methodsS3', 'R.oo', 'sqldf', 'stringr', 'testthat', 'XML', 'DT', 'htmlwidgets', 'log4r', 'pryr'), repos='http://cran.rstudio.com/')"
 
 RUN R -e 'setRepositories(ind=1:6); \
   options(repos="http://cran.rstudio.com/"); \
