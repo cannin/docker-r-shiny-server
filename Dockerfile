@@ -9,7 +9,7 @@ RUN apt-get -y install apt-transport-https
 
 RUN echo 'deb https://cran.rstudio.com/bin/linux/ubuntu trusty/' >> /etc/apt/sources.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-RUN add-apt-repository -y ppa:openjdk-r/ppa
+#RUN add-apt-repository -y ppa:openjdk-r/ppa
 
 RUN apt-get -y update && apt-get -y upgrade
 
