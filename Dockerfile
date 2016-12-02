@@ -4,7 +4,7 @@ MAINTAINER cannin
 ##### UBUNTU
 # Update Ubuntu and add extra repositories
 RUN apt-get -y update
-#RUN apt-get -y install software-properties-common
+RUN apt-get -y install software-properties-common
 RUN apt-get -y install apt-transport-https
 
 RUN echo 'deb https://cran.rstudio.com/bin/linux/ubuntu trusty/' >> /etc/apt/sources.list
