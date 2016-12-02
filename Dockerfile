@@ -9,7 +9,7 @@ RUN apt-get -y install apt-transport-https
 
 RUN echo 'deb https://cran.rstudio.com/bin/linux/ubuntu trusty/' >> /etc/apt/sources.list
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
-#RUN add-apt-repository -y ppa:openjdk-r/ppa
+RUN add-apt-repository -y ppa:openjdk-r/ppa
 
 RUN apt-get -y update && apt-get -y upgrade
 
@@ -54,11 +54,9 @@ RUN apt-get -y install libxml2-dev
 RUN R CMD javareconf
 
 # Install common R packages
-RUN R -e "install.packages(c('devtools', 'gplots', 'httr', 'igraph', 'knitr', 'methods', 'plyr', 'RColorBrewer', 'rJava', 'rjson', 'R.methodsS3', 'R.oo', 'sqldf', 'stringr', 'testthat', 'XML', 'DT', 'htmlwidgets', 'log4r', 'pryr'))"
+RUN R -e "install.packages(c('devtools', 'gplots', 'httr', 'igraph', 'knitr', 'methods', 'plyr', 'RColorBrewer', 'rJava', 'rjson', 'R.methodsS3', 'R.oo', 'sqldf', 'stringr', 'testthat', 'XML', 'DT', 'htmlwidgets', 'log4r', 'pryr', 'plumber'))"
 
-RUN R -e 'if(!require(devtools)) { install.packages("devtools") }; \
-  library(devtools); \
-  install_github("ramnathv/rCharts");'
+RUN R -e 'library(devtools); install_github("ramnathv/rCharts");'
 
 # Install Bioconductor
 RUN R -e "source('http://bioconductor.org/biocLite.R'); biocLite(c('Biobase', 'BiocCheck', 'BiocGenerics', 'BiocStyle', 'S4Vectors', 'IRanges', 'AnnotationDbi'))"
