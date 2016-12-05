@@ -32,7 +32,9 @@ RUN R -e 'if(!require(devtools)) { install.packages("devtools") }; \
   library(devtools); \
   install_github("cytoscape/r-cytoscape.js");'
 
+# Install plotly and change ownership otherwise plotly will complain: cannot open file 'Rplots.pdf'
 RUN R -e "library(devtools); install_cran('plotly')"
+RUN chown -R shiny:shiny /srv/shiny-server
 
 # Copy sample apps
 RUN cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/
