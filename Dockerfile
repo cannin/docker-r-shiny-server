@@ -6,6 +6,7 @@ MAINTAINER cannin
 RUN apt-get install -y \
     sudo \
     wget \
+    curl \
     gdebi-core \
     pandoc \
     pandoc-citeproc \
@@ -26,6 +27,14 @@ RUN wget --no-verbose "https://s3.amazonaws.com/rstudio-shiny-server-os-build/ub
     rm -f version.txt ss-latest.deb
 
 # Install shiny related packages
+RUN R -e "install.packages(c('rmarkdown', 'shiny'))"
+
+RUN R -e 'if(!require(devtools)) { install.packages("devtools") }; \
+  library(devtools); \
+  install_github("cytoscape/r-cytoscape.js");'
+
+RUN R -e "library(devtools); install_cran('plotly')"
+
 COPY r-requirements.txt /
 COPY installPackages.R /
 COPY runInstallPackages.R /
